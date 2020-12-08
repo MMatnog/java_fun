@@ -39,4 +39,31 @@ public class SinglyLinkedList {
             }
         }
     }
+
+    public Node find(int value){
+        if (this.head != null){
+            Node runner = head;
+            while (runner != null){
+                if (runner.value == value){
+                    return runner;
+                }
+                runner = runner.next;
+            }
+        }
+        return null;
+    }
+
+    public void removeAt(int count){
+        Node runner = head;
+        Node previous = null;
+        Node next = head.next;
+
+        for (int i = 0; i < count; i++){
+            previous = runner;
+            runner = next;
+            next = next.next;
+        }
+        previous.next = next;
+        runner = null;
+    }
 }

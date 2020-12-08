@@ -10,5 +10,11 @@ public class ListMain {
         sll.remove();
         sll.remove();
         sll.printValues();
+
+        Node findTest = sll.find(3);
+        System.out.println(findTest.value);
+        System.out.println("New List");
+        sll.removeAt(3);
+        sll.printValues();
     }
 }
