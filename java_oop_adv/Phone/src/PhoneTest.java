@@ -13,5 +13,4 @@ public class PhoneTest {
 		System.out.println(iphoneTen.ring());
 		System.out.println(iphoneTen.unlock());
 	}
-
 }
