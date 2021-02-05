@@ -58,6 +58,7 @@ public class MainController {
 	public String showDojo(@PathVariable("id") Long id, Model model, @ModelAttribute("dojo") Dojo dojo) {
 		Dojo d = dojoServ.findDojo(id);
 		if (d != null){
+			model.addAttribute("ninjas", d.getNinjas());
 			model.addAttribute("dojo", d);
 			return "viewdojo.jsp";
 		} else {
@@ -66,7 +67,19 @@ public class MainController {
 	}
 	
 	@GetMapping("/ninjas/new")
-	public String newNinja(@ModelAttribute("ninja") Ninja ninja) {
+	public String newNinja(@ModelAttribute("ninja") Ninja ninja, Model model) {
+		List<Dojo> dojos = dojoServ.allDojo();
+		model.addAttribute("dojos", dojos);
 		return "newninja.jsp";
+	};
+	
+	@PostMapping("/ninjas/new")
+	public String createNinja(@Valid @ModelAttribute("ninja") Ninja ninja, BindingResult result) {
+		if (result.hasErrors()) {
+			return "/ninjas/new";
+		} else {
+			ninjaServ.createNinja(ninja);
+			return "redirect:/";
+		}
 	}
 }	

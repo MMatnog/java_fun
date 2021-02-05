@@ -11,7 +11,15 @@
 </head>
 <body>
 	<h1>New Ninja</h1>
-	<form:form method = "POST" action = "/ninjas/new" modelAttributes = "dojo">
+	<form:form method = "POST" action = "/ninjas/new" modelAttribute = "ninja">
+		<p>
+			<form:label path="dojo">Dojo : </form:label>
+			<form:select path="dojo">
+				<c:forEach items="${dojos}" var="dojo">
+					<form:option value="${dojo}" label = "${dojo.getName()}"></form:option>
+				</c:forEach>
+			</form:select>
+		</p>
 		<p>
 			<form:label path="firstName">First Name :</form:label>
 			<form:input path="firstName"/>
@@ -22,7 +30,9 @@
 		</p>
 		<p>
 			<form:label path="age">Age : </form:label>
+			<form:input path="age"/>
 		</p>
+		<input type = "submit" value = "Submit"/>
 	</form:form>
 </body>
 </html>
